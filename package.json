@@ -1,0 +1,23 @@
+{
+  "name": "electron-pong",
+  "projectName": "Electron Pong",
+  "version": "1.0.0",
+  "description": "A 'Pong' clone built with Electron.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JaxonAdams/electron-pong.git"
+  },
+  "author": "Jaxon Adams",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JaxonAdams/electron-pong/issues"
+  },
+  "homepage": "https://github.com/JaxonAdams/electron-pong#readme",
+  "devDependencies": {
+    "electron": "^21.1.0"
+  }
+}
