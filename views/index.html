@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset='UTF-8' />
-	<meta
-      	http-equiv="Content-Security-Policy"
-      	content="default-src 'self'; script-src 'self'"
-    />
-    <meta
-      	http-equiv="X-Content-Security-Policy"
-      	content="default-src 'self'; script-src 'self'"
-    />
-    <link rel='stylesheet' href='./assets/style.css' />
-	<title>Testing Out Electron</title>
+  <meta charset='UTF-8' />
+  <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+  />
+  <meta
+      http-equiv="X-Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+  />
+  <link rel='stylesheet' href='./assets/style.css' />
+  <script src='./assets/script.js' defer></script>
+  <title>PONG</title>
 </head>
 <body>
-	<h1>Hello World</h1>
+  <canvas id='game-canvas' width='200' height='200' />
 </body>
 </html>
