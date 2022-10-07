@@ -7,6 +7,10 @@ const ctx = canvas.getContext('2d');
 ctx.canvas.width = window.innerWidth;
 ctx.canvas.height = window.innerHeight;
 
+// is up/down key pressed?
+let isUpPressed = false;
+let isDownPressed = false;
+
 // ball position
 let ballPosX = (window.innerWidth / 2) - 45;
 let ballPosY = (window.innerHeight / 2) - 60;
@@ -86,7 +90,7 @@ const main = () => {
         ballPosY += direction.y * ballDY;
 
         // set opponent paddle's next position
-        opponentPaddleY = ballPosY;
+        opponentPaddleY = ballPosY - 22.5;
 
         // wall colision detection
         if (ballPosX < 0 || ballPosX > window.innerWidth - 45) {
@@ -96,6 +100,35 @@ const main = () => {
         if (ballPosY < 0 || ballPosY > window.innerHeight - 60) {
             ballDY = -ballDY;
         };
+
+        // player paddle movement
+        if (isUpPressed) {
+            playerPaddleY = Math.max(playerPaddleY - 2.5, 0 - (paddleHeight / 2));
+        } else if (isDownPressed) {
+            playerPaddleY = Math.min(playerPaddleY + 2.5, window.innerHeight - (paddleHeight / 2));
+        };
+
+        console.log(isUpPressed, isDownPressed);
     }, 10);
 };
 
+// key event handlers
+const keyDownHandler = e => {
+    if (e.key === 'Up' || e.key === 'ArrowUp') {
+        isUpPressed = true;
+    } else if (e.key === 'Down' || e.key === 'ArrowDown') {
+        isDownPressed = true;
+    };
+};
+
+const keyUpHandler = e => {
+    if (e.key === 'Up' || e.key === 'ArrowUp') {
+        isUpPressed = false;
+    } else if (e.key === 'Down' || e.key === 'ArrowDown') {
+        isDownPressed = false;
+    };
+};
+
+// event handlers
+document.addEventListener('keydown', keyDownHandler);
+document.addEventListener('keyup', keyUpHandler);
