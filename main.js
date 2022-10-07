@@ -16,7 +16,6 @@ const createWindow = () => {
 	// if (process.env.NODE_ENV !== 'production') window.webContents.openDevTools(); 
 };
 
-
 // menu template
 const menuTemplate = [
 	{
