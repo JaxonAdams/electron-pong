@@ -13,7 +13,9 @@ const createWindow = () => {
 	});
 
 	window.loadFile(path.join(__dirname, './views/index.html'));
+	// if (process.env.NODE_ENV !== 'production') window.webContents.openDevTools(); 
 };
+
 
 // menu template
 const menuTemplate = [

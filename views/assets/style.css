@@ -4,7 +4,10 @@ html, body {
 }
 
 canvas {
-	background-color: steelblue;
+	/* background-color: steelblue; */
+	background: url('./images/bg.jpg');
+	background-position: center;
+	background-size: cover;
 	display: block;
 	margin: 0 auto;
 }
