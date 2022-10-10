@@ -11,9 +11,11 @@ ctx.canvas.height = window.innerHeight;
 let isUpPressed = false;
 let isDownPressed = false;
 
-// ball position
-let ballPosX = (window.innerWidth / 2) - 45;
-let ballPosY = (window.innerHeight / 2) - 60;
+// ball info
+const ballWidth = 45;
+const ballHeight = 60;
+let ballPosX = (window.innerWidth / 2) - ballWidth;
+let ballPosY = (window.innerHeight / 2) - ballHeight;
 
 // paddle info
 const paddleWidth = 20;
@@ -54,7 +56,7 @@ ballImg.src = './assets/images/paige.png';
 
 // draw ball
 const drawBall = () => {
-    ctx.drawImage(ballImg, ballPosX, ballPosY, 45, 65);
+    ctx.drawImage(ballImg, ballPosX, ballPosY, ballWidth, ballHeight);
 };
 
 // draw the paddles
@@ -74,6 +76,37 @@ const drawOpponentPaddle = () => {
     ctx.closePath();
 };
 
+// set next position of the ball
+const setBallPosition = () => {
+    ballPosX += direction.x * ballDX;
+    ballPosY += direction.y * ballDY;
+};
+
+// set opponent paddle position
+const setOpponentPosition = () => {
+    opponentPaddleY = ballPosY - 22.5;
+};
+
+// wall collision detection
+const checkWallCollision = () => {
+    if (ballPosX < 0 || ballPosX > window.innerWidth - ballWidth) {
+        ballDX = -ballDX;
+    };
+
+    if (ballPosY < 0 || ballPosY > window.innerHeight - ballHeight) {
+        ballDY = -ballDY;
+    };
+};
+
+// handles player movement from keyboard input
+const handlePlayerMovement = () => {
+    if (isUpPressed) {
+        playerPaddleY = Math.max(playerPaddleY - 2.5, 0 - (paddleHeight / 2));
+    } else if (isDownPressed) {
+        playerPaddleY = Math.min(playerPaddleY + 2.5, window.innerHeight - (paddleHeight / 2));
+    };
+};
+
 // main game loop; currently runs  on image load
 const main = () => {
     setInterval(() => {
@@ -86,29 +119,16 @@ const main = () => {
         drawOpponentPaddle();
 
         // set ball's next position
-        ballPosX += direction.x * ballDX;
-        ballPosY += direction.y * ballDY;
+        setBallPosition();
 
         // set opponent paddle's next position
-        opponentPaddleY = ballPosY - 22.5;
+        setOpponentPosition();
 
-        // wall colision detection
-        if (ballPosX < 0 || ballPosX > window.innerWidth - 45) {
-            ballDX = -ballDX;
-        };
-
-        if (ballPosY < 0 || ballPosY > window.innerHeight - 60) {
-            ballDY = -ballDY;
-        };
+        // wall collision detection
+        checkWallCollision();
 
         // player paddle movement
-        if (isUpPressed) {
-            playerPaddleY = Math.max(playerPaddleY - 2.5, 0 - (paddleHeight / 2));
-        } else if (isDownPressed) {
-            playerPaddleY = Math.min(playerPaddleY + 2.5, window.innerHeight - (paddleHeight / 2));
-        };
-
-        console.log(isUpPressed, isDownPressed);
+        handlePlayerMovement();
     }, 10);
 };
 
