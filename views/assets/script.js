@@ -1,3 +1,7 @@
+// get soundfx
+const beepSound = new Audio('./assets/soundfx/pong_beep.ogg');
+const boopSound = new Audio('./assets/soundfx/pong_boop.ogg');
+
 // get canvas element
 const canvas = document.querySelector('#game-canvas');
 
@@ -106,12 +110,18 @@ const checkWallCollision = () => {
         if (ballPosX > window.innerWidth - ballWidth) {
             if (ballPosY < opponentPaddleY || ballPosY > opponentPaddleY + paddleHeight) {
                 playerScore++;
+                beepSound.play();
+            } else {
+                boopSound.play();
             };
         };
         
         if (ballPosX < 0) {
             if (ballPosY < playerPaddleY || ballPosY > playerPaddleY + paddleHeight) {
                 opponentScore++;
+                beepSound.play();
+            } else {
+                boopSound.play();
             };
         };
         
