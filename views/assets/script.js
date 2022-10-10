@@ -84,7 +84,16 @@ const setBallPosition = () => {
 
 // set opponent paddle position
 const setOpponentPosition = () => {
-    opponentPaddleY = ballPosY - 22.5;
+    // if ball is in the fourth quarter of the screen...
+    if (ballPosX >= (window.innerWidth / 2) + (window.innerWidth / 4)) {
+        // ... if ball is above the paddle, move paddle up
+        // else if ball is below the paddle, move the paddle down
+        if (ballPosY - (ballHeight / 2) > opponentPaddleY) {
+            opponentPaddleY += 2;
+        } else if (ballPosY - (ballHeight / 2) < opponentPaddleY) {
+            opponentPaddleY -= 2;
+        };
+    };
 };
 
 // wall collision detection
