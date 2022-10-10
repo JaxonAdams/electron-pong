@@ -11,6 +11,10 @@ ctx.canvas.height = window.innerHeight;
 let isUpPressed = false;
 let isDownPressed = false;
 
+// player and opponent score
+let playerScore = 0;
+let opponentScore = 0;
+
 // ball info
 const ballWidth = 45;
 const ballHeight = 60;
@@ -99,6 +103,18 @@ const setOpponentPosition = () => {
 // wall collision detection
 const checkWallCollision = () => {
     if (ballPosX < 0 || ballPosX > window.innerWidth - ballWidth) {
+        if (ballPosX > window.innerWidth - ballWidth) {
+            if (ballPosY < opponentPaddleY || ballPosY > opponentPaddleY + paddleHeight) {
+                playerScore++;
+            };
+        };
+        
+        if (ballPosX < 0) {
+            if (ballPosY < playerPaddleY || ballPosY > playerPaddleY + paddleHeight) {
+                opponentScore++;
+            };
+        };
+        
         ballDX = -ballDX;
     };
 
@@ -116,6 +132,14 @@ const handlePlayerMovement = () => {
     };
 };
 
+const drawScore = () => {
+    ctx.font = '20px Roboto';
+    ctx.textAlign = 'center';
+    ctx.fillStyle = 'maroon';
+    ctx.fillText(`Player: ${playerScore}`, (window.innerWidth / 4), 30);
+    ctx.fillText(`Opponent: ${opponentScore}`, (window.innerWidth / 2) + window.innerWidth / 4, 30);
+};
+
 // main game loop; currently runs  on image load
 const main = () => {
     setInterval(() => {
@@ -125,7 +149,9 @@ const main = () => {
         // draw assets
         drawBall();
         drawPlayerPaddle();
-        drawOpponentPaddle();
+    ctx.fontSize = 20;
+    drawOpponentPaddle();
+        drawScore();
 
         // set ball's next position
         setBallPosition();
