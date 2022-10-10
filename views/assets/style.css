@@ -8,3 +8,54 @@ canvas {
 	display: block;
 	margin: 0 auto;
 }
+
+.menu-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+	width: 100vw;
+	height: 100vh;
+	background-color: steelblue;
+	color: maroon;
+}
+
+.menu-container h1 {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-size: 48px;
+	text-shadow: 0 0 3px black;
+}
+
+.paige-img {
+	width: 100px;
+	animation: 3s linear 0s infinite reverse both running rotate;
+}
+
+#start-btn {
+	font-size: 28px;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	color: steelblue;
+	background-color: maroon;
+	border: none;
+	border-radius: 20px;
+	padding: 0.8rem 1.5rem;
+	cursor: pointer;
+}
+
+@keyframes rotate {
+	25% {
+		transform: rotate(90deg);
+	}
+
+	50% {
+		transform: rotate(180deg);
+	}
+
+	75% {
+		transform: rotate(270deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}

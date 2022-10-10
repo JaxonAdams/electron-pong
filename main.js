@@ -12,7 +12,7 @@ const createWindow = () => {
 		resizable: false
 	});
 
-	window.loadFile(path.join(__dirname, './views/index.html'));
+	window.loadFile(path.join(__dirname, './views/menu.html'));
 	// if (process.env.NODE_ENV !== 'production') window.webContents.openDevTools(); 
 };
 
