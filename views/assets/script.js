@@ -92,14 +92,19 @@ const setBallPosition = () => {
 
 // set opponent paddle position
 const setOpponentPosition = () => {
-    // if ball is in the fourth quarter of the screen...
-    if (ballPosX >= (window.innerWidth / 2) + (window.innerWidth / 4)) {
-        // ... if ball is above the paddle, move paddle up
-        // else if ball is below the paddle, move the paddle down
-        if (ballPosY - (ballHeight / 2) > opponentPaddleY) {
-            opponentPaddleY += 2;
-        } else if (ballPosY - (ballHeight / 2) < opponentPaddleY) {
-            opponentPaddleY -= 2;
+    // if ball is in last third of the screen...
+    if (ballPosX >= (window.innerWidth / 3) * 2) {
+        // ... if ball is not within paddle y range ...
+        if (ballPosY < opponentPaddleY || ballPosY > opponentPaddleY + paddleHeight) {
+            // ... if ball is above the paddle, move paddle up
+            // else if ball is below the paddle, move the paddle down
+            if (ballPosY - (ballHeight / 2) > opponentPaddleY) {
+                opponentPaddleY += 2;
+                prevOpponentPaddleDirection = 0;
+            } else if (ballPosY - (ballHeight / 2) < opponentPaddleY) {
+                opponentPaddleY -= 2;
+                prevOpponentPaddleDirection = 1;
+            };
         };
     };
 };
@@ -108,7 +113,7 @@ const setOpponentPosition = () => {
 const checkWallCollision = () => {
     if (ballPosX < 0 || ballPosX > window.innerWidth - ballWidth) {
         if (ballPosX > window.innerWidth - ballWidth) {
-            if (ballPosY < opponentPaddleY || ballPosY > opponentPaddleY + paddleHeight) {
+            if (ballPosY + (ballHeight / 2) < opponentPaddleY || ballPosY + (ballHeight / 2) > opponentPaddleY + paddleHeight) {
                 playerScore++;
                 beepSound.play();
             } else {
@@ -117,7 +122,7 @@ const checkWallCollision = () => {
         };
         
         if (ballPosX < 0) {
-            if (ballPosY < playerPaddleY || ballPosY > playerPaddleY + paddleHeight) {
+            if (ballPosY + (ballHeight / 2) < playerPaddleY || ballPosY + (ballHeight / 2) > playerPaddleY + paddleHeight) {
                 opponentScore++;
                 beepSound.play();
             } else {
