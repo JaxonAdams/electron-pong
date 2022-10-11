@@ -15,7 +15,7 @@
   - NodeJS
   - NPM
  
- All other project dependancies can be run with the npm command `npm install` or `npm i`.
+ All other project dependancies can be installed with the npm command `npm install` or `npm i`.
  
  ## Running the Game
  Currently, you can run this app in development mode by downloading the code on your computer, navigating to the root directory of this project, and running the command `npm run start` or `npm start`. I recommend installing the project dependancies first (the app will not run without them) by executing the command `npm i`.
