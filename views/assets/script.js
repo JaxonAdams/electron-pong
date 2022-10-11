@@ -164,8 +164,7 @@ const main = () => {
         // draw assets
         drawBall();
         drawPlayerPaddle();
-    ctx.fontSize = 20;
-    drawOpponentPaddle();
+        drawOpponentPaddle();
         drawScore();
 
         // set ball's next position
