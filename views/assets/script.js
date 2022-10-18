@@ -95,13 +95,13 @@ const setOpponentPosition = () => {
     // if ball is in last third of the screen...
     if (ballPosX >= (window.innerWidth / 3) * 2) {
         // ... if ball is not within paddle y range ...
-        if (ballPosY < opponentPaddleY || ballPosY > opponentPaddleY + paddleHeight) {
+        if ((ballPosY + (ballHeight / 2)) < opponentPaddleY || (ballPosY + (ballHeight / 2)) > opponentPaddleY + paddleHeight) {
             // ... if ball is above the paddle, move paddle up
             // else if ball is below the paddle, move the paddle down
-            if (ballPosY - (ballHeight / 2) > opponentPaddleY) {
+            if (ballPosY > opponentPaddleY) {
                 opponentPaddleY += 2;
                 prevOpponentPaddleDirection = 0;
-            } else if (ballPosY - (ballHeight / 2) < opponentPaddleY) {
+            } else if (ballPosY + ballHeight < opponentPaddleY + paddleHeight) {
                 opponentPaddleY -= 2;
                 prevOpponentPaddleDirection = 1;
             };
