@@ -160,19 +160,11 @@ const main = () => {
     // clear previous frame
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-<<<<<<< HEAD
-        // draw assets
-        drawBall();
-        drawPlayerPaddle();
-        drawOpponentPaddle();
-        drawScore();
-=======
     // draw assets
     drawBall();
     drawPlayerPaddle();
     drawOpponentPaddle();
     drawScore();
->>>>>>> develop
 
     // set ball's next position
     setBallPosition();
