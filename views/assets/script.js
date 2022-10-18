@@ -51,14 +51,14 @@ const getBallDirection = () => {
 // set ball direction
 getBallDirection();
 
-let ballDX = 1.7;
-let ballDY = 1.7;
+let ballDX = 2.5;
+let ballDY = 2.5;
 
 // ball image
 const ballImg = new Image();
 ballImg.addEventListener('load', () => {
     // game will run once image loads in
-    main();
+    window.requestAnimationFrame(main);
 }, false);
 ballImg.src = './assets/images/paige.png';
 
@@ -157,29 +157,29 @@ const drawScore = () => {
 
 // main game loop; currently runs  on image load
 const main = () => {
-    setInterval(() => {
-        // clear previous frame
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // clear previous frame
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // draw assets
-        drawBall();
-        drawPlayerPaddle();
-    ctx.fontSize = 20;
+    // draw assets
+    drawBall();
+    drawPlayerPaddle();
     drawOpponentPaddle();
-        drawScore();
+    drawScore();
 
-        // set ball's next position
-        setBallPosition();
+    // set ball's next position
+    setBallPosition();
 
-        // set opponent paddle's next position
-        setOpponentPosition();
+    // set opponent paddle's next position
+    setOpponentPosition();
 
-        // wall collision detection
-        checkWallCollision();
+    // wall collision detection
+    checkWallCollision();
 
-        // player paddle movement
-        handlePlayerMovement();
-    }, 10);
+    // player paddle movement
+    handlePlayerMovement();
+
+    // run again
+    window.requestAnimationFrame(main);
 };
 
 // key event handlers
