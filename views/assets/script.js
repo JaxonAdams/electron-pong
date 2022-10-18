@@ -51,14 +51,14 @@ const getBallDirection = () => {
 // set ball direction
 getBallDirection();
 
-let ballDX = 1.7;
-let ballDY = 1.7;
+let ballDX = 2.5;
+let ballDY = 2.5;
 
 // ball image
 const ballImg = new Image();
 ballImg.addEventListener('load', () => {
     // game will run once image loads in
-    main();
+    window.requestAnimationFrame(main);
 }, false);
 ballImg.src = './assets/images/paige.png';
 
@@ -95,13 +95,13 @@ const setOpponentPosition = () => {
     // if ball is in last third of the screen...
     if (ballPosX >= (window.innerWidth / 3) * 2) {
         // ... if ball is not within paddle y range ...
-        if (ballPosY < opponentPaddleY || ballPosY > opponentPaddleY + paddleHeight) {
+        if ((ballPosY + (ballHeight / 2)) < opponentPaddleY || (ballPosY + (ballHeight / 2)) > opponentPaddleY + paddleHeight) {
             // ... if ball is above the paddle, move paddle up
             // else if ball is below the paddle, move the paddle down
-            if (ballPosY - (ballHeight / 2) > opponentPaddleY) {
+            if (ballPosY > opponentPaddleY) {
                 opponentPaddleY += 2;
                 prevOpponentPaddleDirection = 0;
-            } else if (ballPosY - (ballHeight / 2) < opponentPaddleY) {
+            } else if (ballPosY + ballHeight < opponentPaddleY + paddleHeight) {
                 opponentPaddleY -= 2;
                 prevOpponentPaddleDirection = 1;
             };
@@ -157,28 +157,37 @@ const drawScore = () => {
 
 // main game loop; currently runs  on image load
 const main = () => {
-    setInterval(() => {
-        // clear previous frame
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // clear previous frame
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+<<<<<<< HEAD
         // draw assets
         drawBall();
         drawPlayerPaddle();
         drawOpponentPaddle();
         drawScore();
+=======
+    // draw assets
+    drawBall();
+    drawPlayerPaddle();
+    drawOpponentPaddle();
+    drawScore();
+>>>>>>> develop
 
-        // set ball's next position
-        setBallPosition();
+    // set ball's next position
+    setBallPosition();
 
-        // set opponent paddle's next position
-        setOpponentPosition();
+    // set opponent paddle's next position
+    setOpponentPosition();
 
-        // wall collision detection
-        checkWallCollision();
+    // wall collision detection
+    checkWallCollision();
 
-        // player paddle movement
-        handlePlayerMovement();
-    }, 10);
+    // player paddle movement
+    handlePlayerMovement();
+
+    // run again
+    window.requestAnimationFrame(main);
 };
 
 // key event handlers
